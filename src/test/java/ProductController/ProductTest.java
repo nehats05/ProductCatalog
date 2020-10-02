@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
@@ -24,17 +25,18 @@ import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
+@AutoConfigureMockMvc
 public class ProductTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
     private MockMvc mockMvc;
-    private WebApplicationContext webApplicationContext;
+    /*private WebApplicationContext webApplicationContext;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
+    }*/
 
     @Test
     public void checkEmpty() throws Exception
@@ -61,8 +63,6 @@ public class ProductTest extends AbstractTransactionalJUnit4SpringContextTests {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(product);
         createProduct(json);
-
-
     }
 
     private void createProduct(String json) throws Exception {

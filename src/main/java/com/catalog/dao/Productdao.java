@@ -4,6 +4,8 @@ import com.catalog.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Productdao implements ProductDaoInterface {
 
@@ -18,7 +20,7 @@ public class Productdao implements ProductDaoInterface {
     }
 
     @Override
-    public Product[] getProduct(String category) {
+    public List<Product> getProduct(String category) {
         return productResource.getProduct(category);
     }
 

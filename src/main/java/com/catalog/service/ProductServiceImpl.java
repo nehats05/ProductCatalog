@@ -6,6 +6,8 @@ import com.catalog.dao.Productdao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService{
 
@@ -18,7 +20,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product[] getProduct(String category) {
+    public List<Product> getProduct(String category) {
         return productdao.getProduct(category);
     }
 }

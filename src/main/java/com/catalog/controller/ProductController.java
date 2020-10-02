@@ -5,6 +5,8 @@ import com.catalog.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ProductController {
 
@@ -18,7 +20,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/v1/products",method = RequestMethod.GET)
-    public Product[] getProductDetails(@RequestParam("category") String category)
+    public List<Product> getProductDetails(@RequestParam("category") String category)
     {
         return productService.getProduct(category);
     }

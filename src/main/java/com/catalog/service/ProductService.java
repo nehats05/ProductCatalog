@@ -1,8 +1,9 @@
 package com.catalog.service;
 
 import com.catalog.Product;
+import java.util.List;
 
 public interface ProductService {
     Product productcreation(Product product);
-    Product[] getProduct(String category);
+    List<Product> getProduct(String category);
 }
