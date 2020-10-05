@@ -41,7 +41,7 @@ public class ProductTest extends AbstractTransactionalJUnit4SpringContextTests {
     @Test
     public void checkEmpty() throws Exception
     {
-        mockMvc.perform(MockMvcRequestBuilders.get("/productcreation").accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.get("/getProducts").accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$",hasSize(0)));
     }
@@ -51,7 +51,7 @@ public class ProductTest extends AbstractTransactionalJUnit4SpringContextTests {
         product.setName("Red Shirt");
         product.setDescription("Red hugo boss shirt");
         product.setBrand("Hugo Boss");
-        product.setTags(new String[]{"red", "shirt", "slim fit"});
+        product.setTags("red,shirt,slim fit");
         product.setCategory("Apparel");
 
         return product;
@@ -59,9 +59,10 @@ public class ProductTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Test
     public void creationProduct() throws Exception{
-        Product product = new Product();
+        Product product = getProductItem();
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(product);
+        System.out.println(json);
         createProduct(json);
     }
 

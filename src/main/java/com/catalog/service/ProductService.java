@@ -4,6 +4,7 @@ import com.catalog.Product;
 import java.util.List;
 
 public interface ProductService {
-    Product productcreation(Product product);
+    void productcreation(Product product);
     List<Product> getProduct(String category);
+    List<Product> getallProducts();
 }

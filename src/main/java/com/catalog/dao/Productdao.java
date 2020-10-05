@@ -13,15 +13,20 @@ public class Productdao implements ProductDaoInterface {
     private ProductResource productResource;
 
     @Override
-    public Product creation(Product product) {
-        Product product1= productResource.createProduct(product.getName(),product.getDescription(),product.getBrand(),
-                                                        product.getTags(),product.getCategory());
-       return product1;
+    public void creation(Product product) {
+       productResource.createProduct(product.getName(),product.getDescription(),product.getCategory(),
+                                                        product.getTags(),product.getBrand());
+       /*return product1;*/
     }
 
     @Override
     public List<Product> getProduct(String category) {
         return productResource.getProduct(category);
+    }
+
+    @Override
+    public List<Product> getallProducts() {
+        return productResource.getallProducts();
     }
 
 }

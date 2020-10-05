@@ -15,12 +15,17 @@ public class ProductServiceImpl implements ProductService{
     private ProductDaoInterface productdao;
 
     @Override
-    public Product productcreation(Product product) {
-       return productdao.creation(product);
+    public void productcreation(Product product) {
+        productdao.creation(product);
     }
 
     @Override
     public List<Product> getProduct(String category) {
         return productdao.getProduct(category);
+    }
+
+    @Override
+    public List<Product> getallProducts() {
+        return productdao.getallProducts();
     }
 }

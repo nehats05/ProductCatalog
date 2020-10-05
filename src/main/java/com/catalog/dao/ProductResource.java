@@ -12,10 +12,13 @@ import java.util.List;
 @Repository
 public interface ProductResource extends CrudRepository<Product,Product> {
         @Modifying
-        @Query(value = "insert into products values(:name,:description,:brand,:tags,:category)",nativeQuery = true)
-        Product createProduct(@Param("name") String name,@Param("description") String description,@Param("brand") String brand,
-                              @Param("tags") String[] tags, @Param("category") String category);
+        @Query(value = "insert into products(name,description,category,tags,brand) values(:name,:description,:category,:tags,:brand)",nativeQuery = true)
+        void createProduct(@Param("name") String name,@Param("description") String description,
+                           @Param("category") String category, @Param("tags") String tags,@Param("brand") String brand);
 
         @Query(value = "select id,name,category,createdat from products where category = :category",nativeQuery = true)
         List<Product> getProduct(@Param("category") String category);
+
+        @Query(value = "select * from products",nativeQuery = true)
+        List<Product> getallProducts();
 }

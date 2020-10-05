@@ -16,7 +16,7 @@ public class Product {
     private String name;
     private String description;
     private String brand;
-    private String[] tags;
+    private String tags;
     private String category;
     @Column(name = "createdat")
     private Timestamp createdat;
@@ -24,7 +24,7 @@ public class Product {
     public Product()
     { }
 
-    public Product(int id, String name, String description, String brand, String[] tags, String category) {
+    public Product(int id, String name, String description, String brand, String tags, String category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -73,11 +73,11 @@ public class Product {
         this.brand = brand;
     }
 
-    public String[] getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
