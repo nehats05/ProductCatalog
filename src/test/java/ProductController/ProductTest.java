@@ -101,8 +101,26 @@ public class ProductTest extends AbstractTransactionalJUnit4SpringContextTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
-        /*.andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.notNullValue()))
-        .andExpect(MockMvcResultMatchers.jsonPath("$.createdat",Matchers.notNullValue()));*/
+    }
+
+    @Test
+    public void getProductBycategory() throws Exception
+    {
+        Product product = getProductItem();
+        ObjectMapper objectMapper = new ObjectMapper();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_INSTANT;
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        String json = objectMapper.writeValueAsString(product);
+        System.out.println(json);
+        createProduct(json);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/products")
+                        .param("category","Apparel")
+                            .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].category",is(product.getCategory())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name",is(product.getName())));
     }
 
 }
