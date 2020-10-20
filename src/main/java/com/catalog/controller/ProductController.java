@@ -14,16 +14,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    //insertion of new product to repo
     @RequestMapping(value = "/productcreation",method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createProduct(@RequestBody Product product)
     {
-        /*Product product1 = new Product();
-        product1.setName("Red Shirt");
-        product1.setDescription("Red hugo boss shirt");
-        product1.setBrand("Hugo Boss");
-        product1.setTags(new String[]{"red", "shirt", "slim fit"});
-        product1.setCategory("Apparel");*/
          productService.productcreation(product);
     }
 
@@ -34,6 +29,7 @@ public class ProductController {
         return productService.getallProducts();
     }
 
+    //serach the product based on the category and get the list of products matching the category
     @RequestMapping(value = "/v1/products",method = RequestMethod.GET)
     public List<Product> getProductDetails(@RequestParam("category") String category)
     {

@@ -120,6 +120,8 @@ public class ProductTest extends AbstractTransactionalJUnit4SpringContextTests {
                             .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].category",is(product.getCategory())))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id",is(product.getId())))
+               /* .andExpect(MockMvcResultMatchers.jsonPath("$[0].createdat",is(product.getCreatedat())))*/
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name",is(product.getName())));
     }
 

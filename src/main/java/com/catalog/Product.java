@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products")
@@ -19,7 +20,7 @@ public class Product {
     private String tags;
     private String category;
     @Column(name = "createdat")
-    private Timestamp createdat;
+    private LocalDateTime createdat;
 
     public Product()
     { }
@@ -33,11 +34,11 @@ public class Product {
         this.category = category;
     }
 
-    public Timestamp getCreatedat() {
+    public LocalDateTime getCreatedat() {
         return createdat;
     }
 
-    public void setCreatedat(Timestamp createdat) {
+    public void setCreatedat(LocalDateTime createdat) {
         this.createdat = createdat;
     }
 

@@ -4,6 +4,7 @@ import com.catalog.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Component
@@ -14,14 +15,16 @@ public class Productdao implements ProductDaoInterface {
 
     @Override
     public void creation(Product product) {
-       productResource.createProduct(product.getName(),product.getDescription(),product.getCategory(),
-                                                        product.getTags(),product.getBrand());
-       /*return product1;*/
+       productResource.createProduct(product.getId(),product.getName(),product.getDescription(),product.getCategory(),
+                                                        product.getTags(),product.getCreatedat(),product.getBrand());
+
     }
 
     @Override
     public List<Product> getProduct(String category) {
-        return productResource.getProduct(category);
+        List<Product> products= productResource.getProduct(category);
+        products.sort(Comparator.comparing(Product::getCreatedat));    //sorting the list based on createdat localdatetime
+        return products;
     }
 
     @Override
